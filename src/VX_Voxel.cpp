@@ -155,7 +155,7 @@ Vec3D<float> CVX_Voxel::cornerOffset(voxelCorner corner) const
 		else strains[i] = posLink?1.0:-1.0;
 	}
 
-	return (0.5*baseSize()).Scale(strains);
+	return Vec3D<float>((0.5*baseSize()).Scale(strains));
 }
 
 //http://klas-physics.googlecode.com/svn/trunk/src/general/Integrator.cpp (reference)
@@ -363,7 +363,7 @@ float CVX_Voxel::transverseArea(CVX_Link::linkAxis axis)
 	float size = (float)mat->nominalSize();
 	if (mat->poissonsRatio() == 0) return size*size;
 
-	Vec3D<> psVec = poissonsStrain();
+	Vec3D<float> psVec = poissonsStrain();
 
 	switch (axis){
 	case CVX_Link::X_AXIS: return (float)(size*size*(1+psVec.y)*(1+psVec.z));
